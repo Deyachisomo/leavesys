@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Pending Requests - Leave Management System</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="bg-primary text-white py-3">
+        <div class="container-fluid">
+            <div class="row align-items-center">
+                <!-- Menu Button -->
+                <div class="col-auto">
+                    <button class="btn btn-outline-light" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasMenu" aria-controls="offcanvasMenu">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+                <!-- Title in the center -->
+                <div class="col text-center">
+                    <h1 class="mb-0">Pending Requests - Leave Management System</h1>
+                </div>
+                <!-- Profile and Login/Logout links on the right -->
+                <div class="col-auto">
+                    <button class="btn btn-outline-light"><a href="#" class="text-white me-3 text-decoration-none"><i class="fas fa-user"></i> Profile</a></button>
+                    <button class="btn btn-outline-light"><a href="#" class="text-white text-decoration-none"><i class="fas fa-sign-out-alt"></i> Logout</a></button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Offcanvas Menu -->
+    <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasMenu" aria-labelledby="offcanvasMenuLabel">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasMenuLabel">Menu</h5>
+            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            <ul class="nav flex-column">
+                <li class="nav-item"> <a class="nav-link" href="index_super.html"><i class="fas fa-home"></i> Home </a> </li>
+                <li class="nav-item"> <a class="nav-link" href="leave-requests.html"><i class="fas fa-envelope-open-text"></i> Leave Requests</a> </li>
+                <li class="nav-item"> <a class="nav-link" href="denied-requests.html"><i class="fas fa-times-circle"></i> Denied Requests</a> </li>
+                <li class="nav-item"> <a class="nav-link active" href="pending-requests.html"><i class="fas fa-hourglass-half"></i> Pending Requests</a> </li>
+                <li class="nav-item"> <a class="nav-link" href="personal-details.html"><i class="fas fa-user-cog"></i> Profile</a> </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Main Layout -->
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Main Content -->
+            <main class="col-md-9 p-4">
+                <h2 class="mb-4">Pending Requests</h2>
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Employee Name</th>
+                                <th>Leave Type</th>
+                                <th>Start Date</th>
+                                <th>End Date</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>John Doe</td>
+                                <td>Sick Leave</td>
+                                <td>2025-03-10</td>
+                                <td>2025-03-12</td>
+                                <td>Pending</td>
+                            </tr>
+                            <tr>
+                                <td>Jane Smith</td>
+                                <td>Vacation Leave</td>
+                                <td>2025-03-15</td>
+                                <td>2025-03-20</td>
+                                <td>Pending</td>
+                            </tr>
+                            <!-- Add more pending requests as needed -->
+                        </tbody>
+                    </table>
+                </div>
+            </main>
+
+            <!-- Sidebar Section -->
+            <aside class="col-md-3 p-4">
+                <!-- Calendar -->
+                <h3 class="mb-4">Calendar</h3>
+                <div id="calendar"></div>
+
+                <!-- Upcoming Leaves Sidebar -->
+                <div class="sidebar-events mt-4">
+                    <h4 class="mb-3">Upcoming Leaves</h4>
+                    <ul class="list-group">
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            John Doe - Sick Leave
+                            <span class="badge bg-success">2025-03-10</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            Jane Smith - Vacation Leave
+                            <span class="badge bg-success">2025-03-15</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            Mark Johnson - Personal Leave
+                            <span class="badge bg-warning text-dark">2025-05-01</span>
+                        </li>
+                    </ul>
+                </div>
+            </aside>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-primary text-white text-center py-3">
+        &copy; 2025 Leave Management System
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

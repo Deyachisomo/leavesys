@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Supervisor Dashboard - Leave Management System</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Pikaday CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pikaday/css/pikaday.css">
+    <style>
+        /* Custom CSS for calendar and sidebar */
+        #calendar {
+            width: 100%; /* Full width of the container */
+            margin-bottom: 20px; /* Space below the calendar */
+        }
+        .sidebar-events {
+            max-height: 300px; /* Limit height of the sidebar */
+            overflow-y: auto; /* Add scrollbar if content overflows */
+        }
+        .pika-single {
+            z-index: 1000; /* Ensure calendar appears above other elements */
+        }
+        /* Custom CSS for holiday highlighting */
+        .pika-day-holiday .pika-button {
+            background-color: #dc3545; /* Red background for holidays */
+            color: white; /* White text for holidays */
+            border-radius: 50%; /* Circular highlight */
+        }
+        /* Hover effects for buttons and links */
+        .nav-link:hover, .btn:hover {
+            background-color: #007bff;
+            color: white !important;
+        }
+        /* Card styling */
+        .card {
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background-color: #f8f9fa; /* Light grey background */
+        }
+        .card-title a {
+            color: inherit;
+            text-decoration: none;
+        }
+        .card-title a:hover {
+            text-decoration: underline;
+        }
+        /* Ensure equal height for cards */
+        .card-body {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="bg-primary text-white py-3">
+        <div class="container-fluid">
+            <div class="row align-items-center">
+                <!-- Menu Button -->
+                <div class="col-auto">
+                    <button class="btn btn-outline-light" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasMenu" aria-controls="offcanvasMenu">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+                <!-- Title in the center -->
+                <div class="col text-center">
+                    <h1 class="mb-0">Supervisor Dashboard - Leave Management System</h1>
+                </div>
+                <!-- Profile and Login/Logout links on the right -->
+                <div class="col-auto">
+                    <button class="btn btn-outline-light"><a href="#" class="text-white me-3 text-decoration-none"><i class="fas fa-user"></i> Profile</a></button>
+                    <button class="btn btn-outline-light"><a href="#" class="text-white text-decoration-none"><i class="fas fa-sign-out-alt"></i> Logout</a></button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Offcanvas Menu -->
+    <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasMenu" aria-labelledby="offcanvasMenuLabel">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasMenuLabel">Menu</h5>
+            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            <ul class="nav flex-column">
+                <li class="nav-item"> <a class="nav-link active" href="index_super.html"><i class="fas fa-home"></i> Home </a> </li>
+                <li class="nav-item"> <a class="nav-link" href="leave-requests.html"><i class="fas fa-envelope-open-text"></i> Leave Requests</a> </li>
+                <li class="nav-item"> <a class="nav-link" href="denied-requests.html"><i class="fas fa-times-circle"></i> Denied Requests</a> </li>
+                <li class="nav-item"> <a class="nav-link" href="pending-requests.html"><i class="fas fa-hourglass-half"></i> Pending Requests</a> </li>
+                <li class="nav-item"> <a class="nav-link" href="personal-details.html"><i class="fas fa-user-cog"></i> Profile</a> </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Main Layout -->
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Main Content -->
+            <main class="col-md-9 p-4">
+                <!-- Dashboard Summary -->
+                <h2 class="mb-4">Dashboard Summary</h2>
+                <div class="row">
+                    <div class="col-md-4 mb-4">
+                        <div class="card text-dark">
+                            <div class="card-body">
+                                <h5 class="card-title"><a href="leave-requests.html" class="text-dark text-decoration-none">Total Requests</a></h5>
+                                <p class="card-text"><strong>Requests:</strong> 15</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <div class="card text-dark">
+                            <div class="card-body">
+                                <h5 class="card-title"><a href="denied-requests.html" class="text-dark text-decoration-none">Denied Requests</a></h5>
+                                <p class="card-text"><strong>Denied:</strong> 3</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <div class="card text-dark">
+                            <div class="card-body">
+                                <h5 class="card-title"><a href="pending-requests.html" class="text-dark text-decoration-none">Pending Approval</a></h5>
+                                <p class="card-text"><strong>Pending:</strong> 5</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Additional Dashboard Cards -->
+                <div class="row">
+                    <div class="col-md-4 mb-4">
+                        <div class="card text-dark">
+                            <div class="card-body">
+                                <h5 class="card-title"><a href="#" class="text-dark text-decoration-none">Approved Requests</a></h5>
+                                <p class="card-text"><strong>Approved:</strong> 7</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <div class="card text-dark">
+                            <div class="card-body">
+                                <h5 class="card-title"><a href="#" class="text-dark text-decoration-none">Total Employees</a></h5>
+                                <p class="card-text"><strong>Employees:</strong> 50</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <div class="card text-dark">
+                            <div class="card-body">
+                                <h5 class="card-title"><a href="#" class="text-dark text-decoration-none">Upcoming Leaves</a></h5>
+                                <p class="card-text"><strong>Upcoming:</strong> 10</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Activities -->
+                <div class="row">
+                    <div class="col-md-12 mb-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Recent Activities</h5>
+                                <ul class="list-group">
+                                    <li class="list-group-item">John Doe submitted a sick leave request.</li>
+                                    <li class="list-group-item">Jane Smith's vacation leave was approved.</li>
+                                    <li class="list-group-item">Mark Johnson's personal leave is pending HR approval.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Announcements -->
+                <div class="row">
+                    <div class="col-md-12 mb-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Announcements</h5>
+                                <p class="card-text">Please submit your leave requests for the upcoming holiday season by the end of this month.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+
+            <!-- Sidebar Section -->
+            <aside class="col-md-3 p-4">
+                <!-- Calendar -->
+                <h3 class="mb-4">Calendar</h3>
+                <div id="calendar"></div>
+
+                <!-- Upcoming Leaves Sidebar -->
+                <div class="sidebar-events mt-4">
+                    <h4 class="mb-3">Upcoming Leaves</h4>
+                    <ul class="list-group">
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            John Doe - Sick Leave
+                            <span class="badge bg-success">2025-03-10</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            Jane Smith - Vacation Leave
+                            <span class="badge bg-success">2025-03-15</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            Mark Johnson - Personal Leave
+                            <span class="badge bg-warning text-dark">2025-05-01</span>
+                        </li>
+                    </ul>
+                </div>
+            </aside>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-primary text-white text-center py-3">
+        &copy; 2025 Leave Management System
+    </footer>
+
+    <!-- Pikaday JS -->
+    <script src="https://cdn.jsdelivr.net/npm/pikaday/pikaday.js"></script>
+    <script>
+        // Initialize Pikaday Calendar
+        const calendar = new Pikaday({
+            field: document.getElementById('calendar'),
+            bound: false, // Do not bind to an input field
+            showWeekNumber: true, // Show week numbers
+            firstDay: 1, // Start the week on Monday
+            format: 'YYYY-MM-DD', // Date format
+            events: [
+                // Example leave dates
+                '2025-03-10', // John Doe - Sick Leave
+                '2025-03-15', // Jane Smith - Vacation Leave
+                '2025-05-01'  // Mark Johnson - Personal Leave
+            ],
+            onDraw: function() {
+                // Highlight leave dates
+                const leaves = this.getEvents();
+                leaves.forEach(date => {
+                    const cell = this._getCell(new Date(date));
+                    if (cell) {
+                        cell.classList.add('pika-day-holiday'); // Add custom class for leave dates
+                    }
+                });
+            }
+        });
+    </script>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

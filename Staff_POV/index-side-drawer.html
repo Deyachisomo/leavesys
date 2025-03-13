@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Side Drawer Menu</title>
+  <style>
+    /* CSS Styling */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+    }
+
+    /* Hamburger Icon */
+    .menu-icon {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      cursor: pointer;
+      z-index: 1000;
+    }
+
+    .menu-icon span {
+      display: block;
+      width: 30px;
+      height: 3px;
+      background-color: #333;
+      margin: 5px 0;
+      transition: 0.4s;
+    }
+
+    /* Side Drawer */
+    .side-drawer {
+      position: fixed;
+      top: 0;
+      left: -250px; /* Hide the drawer by default */
+      width: 250px;
+      height: 100%;
+      background-color: #333;
+      transition: 0.4s;
+      z-index: 999;
+    }
+
+    .side-drawer ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      padding-top: 60px;
+    }
+
+    .side-drawer ul li {
+      padding: 15px;
+    }
+
+    .side-drawer ul li a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 18px;
+    }
+
+    .side-drawer ul li a:hover {
+      color: #ddd;
+    }
+
+    /* Content */
+    .content {
+      padding: 20px;
+      margin-left: 0;
+      transition: 0.4s;
+    }
+
+    /* Open State */
+    .side-drawer.open {
+      left: 0;
+    }
+
+    .menu-icon.open span:nth-child(1) {
+      transform: rotate(-45deg) translate(-5px, 6px);
+    }
+
+    .menu-icon.open span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .menu-icon.open span:nth-child(3) {
+      transform: rotate(45deg) translate(-5px, -6px);
+    }
+  </style>
+</head>
+<body>
+  <!-- Hamburger Icon -->
+  <div class="menu-icon" id="menuIcon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+
+  <!-- Side Drawer Menu -->
+  <div class="side-drawer" id="sideDrawer">
+    <ul>
+      <li><a href="#">Home</a></li>
+      <li><a href="#">About</a></li>
+      <li><a href="#">Services</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+  </div>
+
+  <!-- Main Content -->
+  <div class="content">
+    <h1>Welcome to My Website</h1>
+    <p>Click the menu icon to open the side drawer.</p>
+  </div>
+
+  <script>
+    // JavaScript for Toggle Functionality
+    const menuIcon = document.getElementById('menuIcon');
+    const sideDrawer = document.getElementById('sideDrawer');
+
+    menuIcon.addEventListener('click', () => {
+      sideDrawer.classList.toggle('open');
+      menuIcon.classList.toggle('open');
+    });
+  </script>
+</body>
+</html>
